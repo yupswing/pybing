@@ -1,7 +1,9 @@
 
 # pybing
 
-This library provide support to query the Bing Search Engine
+This python library provide support to query the Bing Search Engine<br/>
+Originally forked from: https://code.google.com/p/pybing/<br/>
+LICENCE: GNU GPL v2 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 ---
 
