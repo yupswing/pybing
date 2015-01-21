@@ -33,25 +33,32 @@
 # This library provide support to query the Bing Search Engine
 
 # To use the webservice you need an API Key from Microsoft.
-# When you login (or register) with a Microsoft account, you can obtain a key (to be used with the library) from https://datamarket.azure.com/account/keys
+# When you login (or register) with a Microsoft account, you can obtain a key (to be used with the library) from
+# https://datamarket.azure.com/account/keys
 
-# To use the service you need to subscribe to it from https://datamarket.azure.com/dataset/bing/search
+# To use the service you need to subscribe to it from
+# https://datamarket.azure.com/dataset/bing/search
 # The free subscription offers 5000 queries per months.
 # If you need more you can pay and subscribe a different offer.
 
-# Last, you can check your subscription status (basically the queries left this month) at https://datamarket.azure.com/dataset/explore/5ba839f1-12ce-4cce-bf57-a49d98d29a44
+# Last, you can check your subscription status (basically the queries left this month) at
+# https://datamarket.azure.com/dataset/explore/5ba839f1-12ce-4cce-bf57-a49d98d29a44
 
 
 #### Example usage:
 
 # from pybing import Bing
 # bing = Bing("YOUR KEY HERE",)
-# response = bing.search(query+" wikipedia",top=1)
+# query="python programming language"
+# response = bing.search(query,top=5,search_type='Web',market='en-US',adult='off')
 # if response:
-   # first = response[0]
-   # print "%s (%s)\n%s" % (first.get('Title','no title'),first.get('Description','no description'),first.get('Url','no url'))
+    # for result in response:
+        # print "TITLE: %s\nDESCRIPTION: %s\nURL: %s\n\n" % (result.get('Title','no title'),
+                                                           # result.get('Description','no description'),
+                                                           # result.get('Url','no url'))
 # else:
    # print "No results"
+
 
 #### Test from shell
 
@@ -75,7 +82,9 @@ def main():
     result = bing.search("python programming language")
     if result:
         for el in result:
-            print "TITLE: %s\nDESCRIPTION:%s\nURL:%s\n\n" % (el.get('Title','no title'),el.get('Description','no description'),el.get('Url','no url'))
+            print "TITLE: %s\nDESCRIPTION: %s\nURL: %s\n\n" % (el.get('Title','no title'),
+                    el.get('Description','no description'),
+                    el.get('Url','no url'))
     else:
         print "No results"
 
