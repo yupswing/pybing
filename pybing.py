@@ -30,19 +30,31 @@
 
 # ---
 
-# You can obtain a key here https://datamarket.azure.com/account/keys
-# check your service at https://datamarket.azure.com/dataset/explore/5ba839f1-12ce-4cce-bf57-a49d98d29a44
-# and subscribe to use the service here https://datamarket.azure.com/dataset/bing/search
-# (5000 queries per months for free)
+# This library provide support to query the Bing Search Engine
 
-# Example usage:
-#  from pybing import Bing
-#  bing = Bing("YOUR KEY HERE",)
-#  response = bing.search(query+" wikipedia",top=1)
-#  if response: print response[0].get('Url','')
-#  else: print "No results"
+# To use the webservice you need an API Key from Microsoft.
+# When you login (or register) with a Microsoft account, you can obtain a key (to be used with the library) from https://datamarket.azure.com/account/keys
 
-# Test from shell
+# To use the service you need to subscribe to it from https://datamarket.azure.com/dataset/bing/search
+# The free subscription offers 5000 queries per months.
+# If you need more you can pay and subscribe a different offer.
+
+# Last, you can check your subscription status (basically the queries left this month) at https://datamarket.azure.com/dataset/explore/5ba839f1-12ce-4cce-bf57-a49d98d29a44
+
+
+#### Example usage:
+
+# from pybing import Bing
+# bing = Bing("YOUR KEY HERE",)
+# response = bing.search(query+" wikipedia",top=1)
+# if response:
+   # first = response[0]
+   # print "%s (%s)\n%s" % (first.get('Title','no title'),first.get('Description','no description'),first.get('Url','no url'))
+# else:
+   # print "No results"
+
+#### Test from shell
+
 #  python pybing.py YOURKEYHERE
 
 import urllib
@@ -62,7 +74,8 @@ def main():
     bing = Bing(key)
     result = bing.search("python programming language")
     if result:
-        print result
+        for el in result:
+            print "TITLE: %s\nDESCRIPTION:%s\nURL:%s\n\n" % (el.get('Title','no title'),el.get('Description','no description'),el.get('Url','no url'))
     else:
         print "No results"
 
